@@ -6,7 +6,7 @@ SUBDIRS = workloads cvars
 BUILT_SOURCES = parser_gram.h
 
 bin_PROGRAMS = filebench
-filebench_SOURCES = eventgen.c fb_avl.c fb_localfs.c \
+filebench_SOURCES = eventgen.c fb_avl.c fb_localfs.c fb_xfs2.c \
 		    fb_random.c fileset.c flowop.c flowop_library.c \
 		    gamma_dist.c ipc.c misc.c multi_client_sync.c \
 		    parser_gram.y parser_lex.l procflow.c stats.c \
@@ -19,8 +19,9 @@ filebench_SOURCES = eventgen.c fb_avl.c fb_localfs.c \
 		    fb_cvar.c fb_cvar.h aslr.c aslr.h \
 		    cvars/mtwist/mtwist.c cvars/mtwist/mtwist.h
 
-EXTRA_DIST = LICENSE
+filebench_LDADD = xfs2/libxfs2_fsapi.a
 
+EXTRA_DIST = LICENSE
 ACLOCAL_AMFLAGS = -I m4
 AM_YFLAGS = -d
 #AM_LDFLAGS = 

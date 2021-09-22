@@ -571,6 +571,11 @@ flowop_init(int ismaster)
 	case NFS4_PLUG:
 	case CIFS_PLUG:
 		break;
+	case XFS2_PLUG:
+		if (ismaster)
+			fb_xfs2_newflowops();
+		fb_xfs2_funcvecinit();
+		break;
 	}
 }
 

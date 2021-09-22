@@ -151,4 +151,7 @@ void flowop_init(int ismaster);
 void fb_lfs_funcvecinit();
 void fb_lfs_newflowops();
 
+/* Basebit XFS2 */
+void fb_xfs2_newflowops();
+void fb_xfs2_funcvecinit();
 #endif	/* _FB_FLOWOP_H */

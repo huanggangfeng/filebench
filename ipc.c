@@ -375,7 +375,7 @@ void ipc_init(void)
 	filebench_shm->shm_eventgen_hz = 0;
 	filebench_shm->shm_id = -1;
 
-	filebench_shm->shm_filesys_type = LOCAL_FS_PLUG;
+	filebench_shm->shm_filesys_type = XFS2_PLUG;
 }
 
 void

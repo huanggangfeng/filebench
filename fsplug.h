@@ -37,14 +37,24 @@ typedef enum fb_plugin_type {
 	LOCAL_FS_PLUG = 0,
 	NFS3_PLUG,
 	NFS4_PLUG,
-	CIFS_PLUG
+	CIFS_PLUG,
+	XFS2_PLUG  /*Basebit XFS2 Plugin */
 } fb_plugin_type_t;
 
 /* universal file descriptor for both local and nfs file systems */
 typedef union fb_fdesc {
 	int		fd_num;		/* OS file descriptor number */
-	void		*fd_ptr;	/* Pointer to nfs information block */
+	void	*fd_ptr;	/* Pointer to nfs information block */
+	char	*path;    /* fidle/dir path for xfs2 */
 } fb_fdesc_t;
+
+
+typedef struct dir_handler {
+	DIR* dir;
+	long dir_handler;
+	off_t offset;
+} fb_dir_t;
+
 
 typedef struct aiolist aiol_t;
 
@@ -67,9 +77,9 @@ typedef struct fsplug_func_s {
 	ssize_t (*fsp_readlink)(const char *, char *, size_t);
 	int (*fsp_mkdir)(char *, int);
 	int (*fsp_rmdir)(char *);
-	DIR *(*fsp_opendir)(char *);
-	struct dirent *(*fsp_readdir)(DIR *);
-	int (*fsp_closedir)(DIR *);
+	fb_dir_t *(*fsp_opendir)(char *);
+	struct dirent *(*fsp_readdir)(fb_dir_t *);
+	int (*fsp_closedir)(fb_dir_t *);
 	int (*fsp_fsync)(fb_fdesc_t *);
 	int (*fsp_stat)(char *, struct stat64 *);
 	int (*fsp_fstat)(fb_fdesc_t *, struct stat64 *);

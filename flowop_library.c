@@ -2036,7 +2036,7 @@ flowoplib_listdir(threadflow_t *threadflow, flowop_t *flowop)
 {
 	fileset_t	*fileset;
 	filesetentry_t	*dir;
-	DIR		*dir_handle;
+	fb_dir_t		*dir_handle;
 	struct dirent	*direntp;
 	int		dir_bytes = 0;
 	int		ret;
